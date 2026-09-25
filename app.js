@@ -27,7 +27,7 @@ async function fetchCovers(brand = "") {
   }
 }
 
-// عرض الكروت بدون أسعار
+// عرض الكروت بدون صور وبدون أسعار
 function renderCovers(covers) {
   const container = document.getElementById("covers-container");
   container.innerHTML = "";
@@ -36,12 +36,7 @@ function renderCovers(covers) {
     const card = document.createElement("div");
     card.className = "cover-card";
 
-    const defaultImg = "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80";
-
     card.innerHTML = `
-      <div class="card-image-wrapper">
-        <img src="${cover.imageUrl || defaultImg}" alt="${cover.title || 'جراب موبايل'}" onerror="this.src='${defaultImg}'" />
-      </div>
       <div class="card-info">
         <span class="brand-badge">${cover.brand || 'عام'}</span>
         <h3>${cover.title || 'جراب مميز'}</h3>
