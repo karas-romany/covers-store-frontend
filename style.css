@@ -1,5 +1,5 @@
 /* ====================================================
-   1. الإعدادات العامة والألوان الزاهية (Vibrant Liquid Glass)
+   1. الإعدادات العامة والألوان المتوازنة (Vibrant Glass Theme)
    ==================================================== */
 * {
   margin: 0;
@@ -10,8 +10,8 @@
 }
 
 body {
-  /* خلفية زاهية ومتدرجة بأسلوب Liquid ناعم ومشرق */
-  background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 50%, #fefce8 100%);
+  /* خلفية فاتحة ناعمة تتوسط بين الفاتح جداً والداكن مريحة جداً للعين */
+  background: radial-gradient(circle at 50% 0%, #e2e8f0 0%, #cbd5e1 50%, #94a3b8 100%);
   background-attachment: fixed;
   color: #0f172a;
   min-height: 100vh;
@@ -20,23 +20,23 @@ body {
 }
 
 /* ====================================================
-   2. شريط التنقل الزاهي المتجاوب (Responsive Navigation Bar)
+   2. شريط التنقل المتجاوب (Responsive Glass Navbar)
    ==================================================== */
 .navbar {
   position: fixed;
-  top: 10px;
+  top: 12px;
   left: 50%;
   transform: translateX(-50%);
   width: 92%;
   max-width: 1100px;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(25px) saturate(200%);
+  -webkit-backdrop-filter: blur(25px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 20px;
-  padding: 10px 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08),
+  padding: 12px 22px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12),
               inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transition: all 0.3s ease;
 }
@@ -50,18 +50,19 @@ body {
 }
 
 .nav-logo {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 900;
   text-decoration: none;
-  background: linear-gradient(135deg, #2563eb 0%, #7d2ae8 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
 }
 
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
   margin: 0;
   padding: 0;
@@ -69,31 +70,45 @@ body {
 }
 
 .nav-links a {
-  color: #334155;
+  color: #1e293b;
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.88rem;
-  padding: 6px 12px;
+  font-size: 0.9rem;
+  padding: 8px 16px;
   border-radius: 14px;
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-links a:hover, .nav-links a.active {
-  color: #2563eb;
-  background: rgba(37, 99, 235, 0.1);
+.nav-links a:hover {
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.12);
+  transform: translateY(-1px);
 }
 
+/* زراير قوية ومتباينة وضاحية جداً */
 .contact-nav-btn {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
   color: #ffffff !important;
   font-weight: 800 !important;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 4px 15px rgba(5, 150, 105, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.contact-nav-btn:hover {
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.6) !important;
+  transform: translateY(-2px) scale(1.02) !important;
 }
 
 .admin-nav-btn {
-  background: rgba(255, 255, 255, 0.8) !important;
-  border: 1px solid rgba(37, 99, 235, 0.2) !important;
-  color: #2563eb !important;
+  background: #1e293b !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(30, 41, 59, 0.25);
+}
+
+.admin-nav-btn:hover {
+  background: #0f172a !important;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.4) !important;
+  transform: translateY(-2px) !important;
 }
 
 /* ====================================================
@@ -101,87 +116,93 @@ body {
    ==================================================== */
 header {
   text-align: center;
-  padding: 110px 15px 15px;
+  padding: 125px 15px 15px;
 }
 
 header h1 {
-  font-size: 2.1rem;
+  font-size: 2.2rem;
   font-weight: 900;
-  background: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0f172a;
   margin-bottom: 8px;
+  letter-spacing: -0.5px;
 }
 
 header p {
-  color: #64748b;
-  font-size: 1rem;
+  color: #475569;
+  font-size: 1.05rem;
   font-weight: 600;
 }
 
 .search-box {
-  max-width: 500px;
-  margin: 20px auto 20px;
+  max-width: 520px;
+  margin: 25px auto;
   padding: 0 15px;
 }
 
 .search-box input {
   width: 100%;
-  padding: 14px 20px;
-  font-size: 0.95rem;
+  padding: 16px 22px;
+  font-size: 1rem;
   color: #0f172a;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
   outline: none;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
   transition: all 0.3s ease;
   box-sizing: border-box;
 }
 
 .search-box input:focus {
-  border-color: #3b82f6;
+  border-color: #0284c7;
   background: #ffffff;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
+  box-shadow: 0 0 20px rgba(2, 132, 199, 0.3);
 }
 
 .search-box input::placeholder {
-  color: #94a3b8;
+  color: #64748b;
 }
 
+/* أزرار الفلترة الواضحة والمتباينة */
 .filter-bar {
   display: flex;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 30px;
+  gap: 10px;
+  margin-bottom: 35px;
   padding: 0 10px;
   flex-wrap: wrap;
 }
 
 .filter-btn {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  color: #475569;
-  padding: 8px 18px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 10px 22px;
   border-radius: 20px;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.9rem;
-  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.filter-btn.active, .filter-btn:hover {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+.filter-btn:hover {
+  background: #f1f5f9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
   color: #ffffff;
   border-color: transparent;
-  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
   transform: translateY(-2px);
 }
 
 /* ====================================================
-   4. عرض كروت الجرابات (Liquid Glass Cards)
+   4. عرض كروت الجرابات (Animated Glass Cards)
    ==================================================== */
 .covers-grid {
   max-width: 1100px;
@@ -189,44 +210,45 @@ header p {
   padding: 0 15px 50px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
+  gap: 22px;
 }
 
 .cover-card {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .cover-card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(59, 130, 246, 0.4);
-  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.12);
+  transform: translateY(-8px) scale(1.02);
+  background: #ffffff;
+  border-color: rgba(2, 132, 199, 0.4);
+  box-shadow: 0 20px 40px rgba(2, 132, 199, 0.15);
 }
 
 .brand-badge {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(125, 42, 232, 0.15));
-  color: #2563eb;
-  padding: 4px 12px;
+  background: rgba(2, 132, 199, 0.12);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  color: #0284c7;
+  padding: 5px 12px;
   border-radius: 12px;
   font-size: 0.8rem;
   font-weight: 800;
   display: inline-block;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   width: fit-content;
 }
 
 .cover-card h3 {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 800;
   margin-bottom: 6px;
   color: #0f172a;
@@ -234,21 +256,21 @@ header p {
 
 .model-name {
   color: #64748b;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 600;
 }
 
 .loading, .no-data, .error-msg {
   grid-column: 1 / -1;
   text-align: center;
-  padding: 40px 15px;
-  font-size: 1.1rem;
+  padding: 50px 15px;
+  font-size: 1.15rem;
   font-weight: 700;
-  color: #64748b;
+  color: #475569;
 }
 
 /* ====================================================
-   5. شاشة الصيانة والأنيميشن (Vibrant Maintenance Display)
+   5. شاشة الصيانة الفاخرة بأنيميشن المهارة (Animated Maintenance Screen)
    ==================================================== */
 .maintenance-overlay {
   display: flex;
@@ -256,63 +278,79 @@ header p {
   align-items: center;
   min-height: 100vh;
   padding: 20px;
-  background: linear-gradient(135deg, #e0f2fe 0%, #ddd6fe 100%);
+  background: radial-gradient(circle at 50% 30%, #e2e8f0 0%, #cbd5e1 60%, #94a3b8 100%);
   text-align: center;
 }
 
 .maintenance-card {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 28px;
-  padding: 35px 20px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  border-radius: 32px;
+  padding: 45px 25px;
   max-width: 480px;
   width: 100%;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: floatCard 4s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 }
 
 .maintenance-card h2 {
-  color: #1e293b;
-  margin-top: 20px;
-  margin-bottom: 10px;
-  font-size: 1.5rem;
+  color: #0f172a;
+  margin-top: 25px;
+  margin-bottom: 12px;
+  font-size: 1.7rem;
   font-weight: 900;
 }
 
 .animated-text {
-  color: #475569;
+  color: #334155;
   margin-bottom: 25px;
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 600;
+  line-height: 1.6;
 }
 
+/* صندوق اتصال مجسم وبأنيميشن نيون حية */
 .contact-box {
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  padding: 16px 20px;
-  border-radius: 18px;
+  background: #ffffff;
+  border: 2px solid #10b981;
+  padding: 18px 25px;
+  border-radius: 20px;
   width: 100%;
   box-sizing: border-box;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+  animation: pulseGlow 2.5s infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2); }
+  50% { box-shadow: 0 12px 35px rgba(16, 185, 129, 0.45); }
 }
 
 .contact-box p {
-  font-size: 0.9rem;
-  color: #334155;
-  margin-bottom: 5px;
-  font-weight: 700;
+  font-size: 0.95rem;
+  color: #1e293b;
+  margin-bottom: 6px;
+  font-weight: 800;
 }
 
 .phone-number {
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   font-weight: 900;
   color: #059669;
   text-decoration: none;
   display: inline-block;
   direction: ltr;
+  letter-spacing: 1px;
 }
 
 .loader-wrapper {
@@ -322,15 +360,15 @@ header p {
   margin: 10px 0;
 }
 
-/* الرادار المكيّف للشاشات الفاتحة والموبايل */
+/* رادار أنيق وفاتح للشاشات المقفولة */
 .loader {
   position: relative;
   width: 180px;
   height: 180px;
-  background: rgba(255, 255, 255, 0.5);
+  background: #ffffff;
   border-radius: 50%;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  border: 1px solid rgba(37, 99, 235, 0.2);
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.1);
+  border: 2px solid rgba(2, 132, 199, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -342,7 +380,7 @@ header p {
   position: absolute;
   inset: 25px;
   background: transparent;
-  border: 1px dashed rgba(37, 99, 235, 0.3);
+  border: 1.5px dashed rgba(2, 132, 199, 0.4);
   border-radius: 50%;
 }
 
@@ -352,7 +390,7 @@ header p {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  border: 1px dashed rgba(37, 99, 235, 0.3);
+  border: 1.5px dashed rgba(2, 132, 199, 0.4);
 }
 
 .loader span {
@@ -364,7 +402,7 @@ header p {
   background: transparent;
   transform-origin: top left;
   animation: radar81 2s linear infinite;
-  border-top: 1.5px dashed #2563eb;
+  border-top: 2px dashed #0284c7;
 }
 
 .loader span::before {
@@ -374,10 +412,10 @@ header p {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #3b82f6;
+  background: #38bdf8;
   transform-origin: top left;
   transform: rotate(-55deg);
-  filter: blur(25px);
+  filter: blur(20px);
 }
 
 @keyframes radar81 {
@@ -402,7 +440,6 @@ header p {
 
   .nav-logo {
     font-size: 1.1rem;
-    margin-bottom: 2px;
   }
 
   .nav-links {
@@ -416,15 +453,15 @@ header p {
   }
 
   header {
-    padding-top: 115px;
+    padding-top: 120px;
   }
 
   header h1 {
-    font-size: 1.65rem;
+    font-size: 1.7rem;
   }
 
   .covers-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
     gap: 12px;
     padding-bottom: 30px;
   }
