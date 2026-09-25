@@ -1,6 +1,10 @@
 /* ====================================================
-   1. الإعدادات العامة والألوان المتوازنة (Vibrant Glass Theme)
+   1. الإعدادات العامة والألوان الفاتحة الثابتة (Always Light Theme)
    ==================================================== */
+:root {
+  color-scheme: light !important;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,11 +13,11 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-body {
-  /* خلفية فاتحة ناعمة مريحة جداً للعين */
-  background: radial-gradient(circle at 50% 0%, #e2e8f0 0%, #cbd5e1 50%, #94a3b8 100%);
-  background-attachment: fixed;
-  color: #0f172a;
+/* إجبار الخلفية الفاتحة دائماً ومنع تحولها للداكن */
+body, body.light-theme {
+  background: radial-gradient(circle at 50% 0%, #e2e8f0 0%, #cbd5e1 50%, #94a3b8 100%) !important;
+  background-attachment: fixed !important;
+  color: #0f172a !important;
   min-height: 100vh;
   direction: rtl;
   overflow-x: hidden;
@@ -30,14 +34,13 @@ body {
   width: 92%;
   max-width: 1100px;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(25px) saturate(200%);
   -webkit-backdrop-filter: blur(25px) saturate(200%);
   border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: 20px;
   padding: 12px 22px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12),
-              inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
   transition: all 0.3s ease;
 }
 
@@ -56,7 +59,6 @@ body {
   background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.5px;
 }
 
 .nav-links {
@@ -85,18 +87,11 @@ body {
   transform: translateY(-1px);
 }
 
-/* زراير واضحة جداً ومتباينة */
 .contact-nav-btn {
   background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
   color: #ffffff !important;
   font-weight: 800 !important;
   box-shadow: 0 4px 15px rgba(5, 150, 105, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.contact-nav-btn:hover {
-  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.6) !important;
-  transform: translateY(-2px) scale(1.02) !important;
 }
 
 .admin-nav-btn {
@@ -105,59 +100,35 @@ body {
   box-shadow: 0 4px 15px rgba(30, 41, 59, 0.25);
 }
 
-.admin-nav-btn:hover {
-  background: #0f172a !important;
-  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.4) !important;
-  transform: translateY(-2px) !important;
-}
-
 /* ====================================================
-   3. الهيدر والعنوان المبهر بأنيميشن الزاهي (Animated Huge Title)
+   3. الهيدر وشريط البحث (Header & Main Store)
    ==================================================== */
 header {
   text-align: center;
   padding: 135px 15px 20px;
 }
 
-/* العنوان الكبير والزاهي والحي */
 header h1 {
   font-size: 3.2rem;
   font-weight: 900;
   letter-spacing: -1px;
   margin-bottom: 12px;
   display: inline-block;
-  
-  /* ألوان نيون متدرجة زاهية */
-  background: linear-gradient(
-    120deg, 
-    #2563eb 0%, 
-    #7c3aed 25%, 
-    #db2777 50%, 
-    #059669 75%, 
-    #2563eb 100%
-  );
+  background: linear-gradient(120deg, #2563eb 0%, #7c3aed 25%, #db2777 50%, #059669 75%, #2563eb 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  
-  /* أنيميشن تحريك الألوان والتكبير بالنبض */
   animation: shineGradient 4s linear infinite, textPulse 3s ease-in-out infinite;
   filter: drop-shadow(0 8px 20px rgba(37, 99, 235, 0.25));
 }
 
 @keyframes shineGradient {
-  to {
-    background-position: 200% center;
-  }
+  to { background-position: 200% center; }
 }
 
 @keyframes textPulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.03);
-  }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
 }
 
 header p {
@@ -177,9 +148,9 @@ header p {
   padding: 16px 22px;
   font-size: 1rem;
   color: #0f172a;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(15px);
-  border: 2px solid rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.95);
   border-radius: 30px;
   outline: none;
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
@@ -193,11 +164,6 @@ header p {
   box-shadow: 0 0 20px rgba(2, 132, 199, 0.3);
 }
 
-.search-box input::placeholder {
-  color: #64748b;
-}
-
-/* أزرار الفلترة الواضحة */
 .filter-bar {
   display: flex;
   justify-content: center;
@@ -220,90 +186,193 @@ header p {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.filter-btn:hover {
-  background: #f1f5f9;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
-
 .filter-btn.active {
   background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
   color: #ffffff;
   border-color: transparent;
   box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
-  transform: translateY(-2px);
 }
 
 /* ====================================================
-   4. عرض كروت الجرابات (Animated Glass Cards)
+   4. تنسيق لوحة التحكم الزاهية (Vibrant Admin Styles)
    ==================================================== */
-.covers-grid {
-  max-width: 1100px;
+.admin-container {
+  max-width: 750px;
   margin: 0 auto;
-  padding: 0 15px 50px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 22px;
+  padding: 130px 20px 60px;
 }
 
-.cover-card {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 22px;
-  padding: 22px;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.admin-card {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(25px) saturate(200%);
+  -webkit-backdrop-filter: blur(25px) saturate(200%);
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  border-radius: 30px;
+  padding: 40px 30px;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
 }
 
-.cover-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  background: #ffffff;
-  border-color: rgba(2, 132, 199, 0.4);
-  box-shadow: 0 20px 40px rgba(2, 132, 199, 0.15);
-}
-
-.brand-badge {
-  background: rgba(2, 132, 199, 0.12);
-  border: 1px solid rgba(2, 132, 199, 0.25);
-  color: #0284c7;
-  padding: 5px 12px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 800;
-  display: inline-block;
-  margin-bottom: 12px;
-  width: fit-content;
-}
-
-.cover-card h3 {
-  font-size: 1.2rem;
-  font-weight: 800;
+.admin-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #0f172a !important;
   margin-bottom: 6px;
-  color: #0f172a;
+  text-align: center;
 }
 
-.model-name {
-  color: #64748b;
+.admin-subtitle {
+  color: #475569 !important;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.control-section {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0;
+  border-radius: 22px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+}
+
+.control-section h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a !important;
+  margin-bottom: 8px;
+}
+
+.switch-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.switch-info p {
+  color: #64748b !important;
   font-size: 0.92rem;
   font-weight: 600;
 }
 
-.loading, .no-data, .error-msg {
-  grid-column: 1 / -1;
+/* تصميم مفتاح التفعيل (Toggle Switch) */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 62px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #cbd5e1;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+input:checked + .slider {
+  background-color: #059669;
+}
+
+input:checked + .slider:before {
+  transform: translateX(28px);
+}
+
+.status-msg {
+  margin-top: 15px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 10px 15px;
+  border-radius: 12px;
   text-align: center;
-  padding: 50px 15px;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #475569;
+  background: #f1f5f9 !important;
+  color: #334155 !important;
+}
+
+/* نمذجة نماذج إدخال الأدمن */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #1e293b !important;
+}
+
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  color: #0f172a !important;
+  background: #f8fafc !important;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 14px;
+  outline: none;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus, .form-group select:focus {
+  border-color: #0284c7;
+  background: #ffffff !important;
+  box-shadow: 0 0 15px rgba(2, 132, 199, 0.2);
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+  color: #ffffff !important;
+  border: none;
+  padding: 15px;
+  border-radius: 16px;
+  font-weight: 900;
+  font-size: 1.05rem;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35);
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(2, 132, 199, 0.5);
 }
 
 /* ====================================================
-   5. شاشة الصيانة الفاخرة بأنيميشن المهارة (Animated Maintenance Screen)
+   5. شاشة الصيانة الفاخرة (Maintenance Screen)
    ==================================================== */
 .maintenance-overlay {
   display: flex;
@@ -311,12 +380,12 @@ header p {
   align-items: center;
   min-height: 100vh;
   padding: 20px;
-  background: radial-gradient(circle at 50% 30%, #e2e8f0 0%, #cbd5e1 60%, #94a3b8 100%);
+  background: radial-gradient(circle at 50% 30%, #e2e8f0 0%, #cbd5e1 60%, #94a3b8 100%) !important;
   text-align: center;
 }
 
 .maintenance-card {
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.85) !important;
   backdrop-filter: blur(30px) saturate(200%);
   -webkit-backdrop-filter: blur(30px) saturate(200%);
   border: 2px solid rgba(255, 255, 255, 0.95);
@@ -337,7 +406,7 @@ header p {
 }
 
 .maintenance-card h2 {
-  color: #0f172a;
+  color: #0f172a !important;
   margin-top: 25px;
   margin-bottom: 12px;
   font-size: 1.7rem;
@@ -345,21 +414,19 @@ header p {
 }
 
 .animated-text {
-  color: #334155;
+  color: #334155 !important;
   margin-bottom: 25px;
   font-size: 1.05rem;
   font-weight: 600;
-  line-height: 1.6;
 }
 
 .contact-box {
-  background: #ffffff;
+  background: #ffffff !important;
   border: 2px solid #10b981;
   padding: 18px 25px;
   border-radius: 20px;
   width: 100%;
   box-sizing: border-box;
-  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
   animation: pulseGlow 2.5s infinite;
 }
 
@@ -370,7 +437,7 @@ header p {
 
 .contact-box p {
   font-size: 0.95rem;
-  color: #1e293b;
+  color: #1e293b !important;
   margin-bottom: 6px;
   font-weight: 800;
 }
@@ -378,11 +445,10 @@ header p {
 .phone-number {
   font-size: 1.5rem;
   font-weight: 900;
-  color: #059669;
+  color: #059669 !important;
   text-decoration: none;
   display: inline-block;
   direction: ltr;
-  letter-spacing: 1px;
 }
 
 .loader-wrapper {
@@ -392,12 +458,11 @@ header p {
   margin: 10px 0;
 }
 
-/* رادار الصيانة */
 .loader {
   position: relative;
   width: 180px;
   height: 180px;
-  background: #ffffff;
+  background: #ffffff !important;
   border-radius: 50%;
   box-shadow: 0 12px 35px rgba(15, 23, 42, 0.1);
   border: 2px solid rgba(2, 132, 199, 0.3);
@@ -466,46 +531,28 @@ header p {
     border-radius: 16px;
   }
 
-  .nav-container {
-    justify-content: center;
+  .admin-container {
+    padding-top: 110px;
+    padding-left: 12px;
+    padding-right: 12px;
   }
 
-  .nav-logo {
-    font-size: 1.1rem;
+  .admin-card {
+    padding: 25px 15px;
+    border-radius: 22px;
   }
 
-  .nav-links {
-    gap: 4px;
-    justify-content: center;
+  .admin-title {
+    font-size: 1.7rem;
   }
 
-  .nav-links a {
-    font-size: 0.8rem;
-    padding: 5px 8px;
+  .switch-row {
+    flex-direction: row;
+    align-items: center;
   }
 
-  header {
-    padding-top: 125px;
-  }
-
-  /* تكيف العنوان للعمل بسلاسة على شاشات الموبايل الصغير */
   header h1 {
     font-size: 2rem;
-  }
-
-  .covers-grid {
-    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
-    gap: 12px;
-    padding-bottom: 30px;
-  }
-
-  .cover-card {
-    padding: 14px;
-    border-radius: 16px;
-  }
-
-  .cover-card h3 {
-    font-size: 1rem;
   }
 
   .loader {
