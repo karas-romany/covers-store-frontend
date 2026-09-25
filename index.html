@@ -3,28 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>متجر الجرابات - Mobile Covers Store</title>
+  <title>معرض الجرابات الفاخرة</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
-    <h1>📱 متجر جرابات الموبايل</h1>
-    <p>أفضل الجرابات لجميع الموديلات (أوبو، سامسونج، ريلمي...)</p>
+    <h1>معرض الجرابات الملكية</h1>
+    <p>استعراض أفضل الأغطية والجرابات المميزة لهاتفك</p>
   </header>
 
-  <main class="container">
-    <!-- أزرار الفلترة حسب الماركة -->
-    <div class="filter-buttons">
-      <button onclick="fetchCovers('')">الكل</button>
-      <button onclick="fetchCovers('Oppo')">أوبو (Oppo)</button>
-      <button onclick="fetchCovers('Samsung')">سامسونج (Samsung)</button>
-      <button onclick="fetchCovers('Realme')">ريلمي (Realme)</button>
-    </div>
+  <div class="filters">
+    <button class="filter-btn active" onclick="filterByBrand('all')">الكل</button>
+    <button class="filter-btn" onclick="filterByBrand('iPhone')">آيفون</button>
+    <button class="filter-btn" onclick="filterByBrand('Samsung')">سامسونج</button>
+    <button class="filter-btn" onclick="filterByBrand('Xiaomi')">شاومي</button>
+  </div>
 
-    <!-- مكان عرض الجرابات -->
-    <div id="covers-list" class="covers-grid">
-      <p>جاري تحميل الجرابات...</p>
+  <main class="container">
+    <div id="covers-container" class="covers-grid">
+      <!-- يتم تحميل الجرابات هنا تلقائياً -->
     </div>
   </main>
 
