@@ -6,6 +6,43 @@
   <title>لوحة التحكم - إدارة الجرابات والموقع</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    /* شاشة تسجيل الدخول */
+    .login-overlay {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh;
+      padding: 20px;
+    }
+    .login-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 400px;
+      width: 100%;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      text-align: center;
+    }
+    .login-card h2 { color: #78ffd6; margin-bottom: 20px; }
+    
+    .register-contact {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+    .register-contact a {
+      color: #78ffd6;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 5px;
+    }
+
+    /* لوحة الأدمن */
     .admin-container {
       max-width: 650px;
       margin: 30px auto;
@@ -50,7 +87,6 @@
       color: #fff; font-size: 1.1rem; font-weight: 700; cursor: pointer;
     }
 
-    /* قائمة الجرابات للحذف */
     .covers-list-section { margin-top: 40px; }
     .covers-list-section h3 { color: #78ffd6; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
     .item-row {
@@ -70,58 +106,97 @@
 </head>
 <body>
 
-  <header>
-    <h1>لوحة الإدارة الشاملة</h1>
-    <p>التحكم في وضع الصيانة وإضافة/حذف الأصناف</p>
-  </header>
+  <!-- شاشة الدخول -->
+  <div id="login-section" class="login-overlay">
+    <div class="login-card">
+      <h2>🔐 تسجيل دخول الأدمن</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label>كلمة المرور:</label>
+          <input type="password" id="admin-password" placeholder="أدخل كلمة المرور" required>
+        </div>
+        <button type="submit" class="submit-btn">دخول اللوحة</button>
+        <p id="login-error" style="color: #ef4444; margin-top: 10px; display: none;">كلمة المرور غير صحيحة!</p>
+      </form>
 
-  <main class="admin-container">
-    <!-- التحكم في الصيانة -->
-    <div class="toggle-section">
-      <span>وضع الصيانة (قفل الموقع):</span>
-      <button id="toggle-maintenance-btn" class="switch-btn inactive" onclick="toggleMaintenance()">جاري الفحص...</button>
+      <div class="register-contact">
+        <p>لا تملك حساب أو نسيت كلمة السر؟</p>
+        <a href="https://wa.me/201275551116?text=أهلاً،%20أريد%20إنشاء%20حساب%20أدمن%20جديد" target="_blank">
+          📞 تواصل معنا لإنشاء حساب: 01275551116
+        </a>
+      </div>
     </div>
+  </div>
 
-    <!-- إضافة صنف -->
-    <form id="add-cover-form">
-      <h3 style="margin-bottom: 15px; color: #78ffd6;">إضافة صنف/جراب جديد</h3>
-      <div class="form-group">
-        <label>عنوان/وصف الجراب:</label>
-        <input type="text" id="title" placeholder="مثال: جراب سيليكون أسود" required>
+  <!-- لوحة الأدمن (مخفية حتى تسجيل الدخول) -->
+  <div id="admin-panel" style="display: none;">
+    <header>
+      <h1>لوحة الإدارة الشاملة</h1>
+      <p>التحكم في وضع الصيانة وإدارة المنتجات</p>
+    </header>
+
+    <main class="admin-container">
+      <!-- التحكم في الصيانة -->
+      <div class="toggle-section">
+        <span>وضع الصيانة (قفل الموقع):</span>
+        <button id="toggle-maintenance-btn" class="switch-btn inactive" onclick="toggleMaintenance()">جاري الفحص...</button>
       </div>
 
-      <div class="form-group">
-        <label>الماركة:</label>
-        <select id="brand" required>
-          <option value="Oppo">أوبو (Oppo)</option>
-          <option value="Samsung">سامسونج (Samsung)</option>
-          <option value="Xiaomi">شاومي (Xiaomi)</option>
-          <option value="Other">ماركة أخرى</option>
-        </select>
+      <!-- إضافة صنف -->
+      <form id="add-cover-form">
+        <h3 style="margin-bottom: 15px; color: #78ffd6;">إضافة صنف/جراب جديد</h3>
+        <div class="form-group">
+          <label>عنوان/وصف الجراب:</label>
+          <input type="text" id="title" placeholder="مثال: جراب سيليكون أسود" required>
+        </div>
+
+        <div class="form-group">
+          <label>الماركة:</label>
+          <select id="brand" required>
+            <option value="Oppo">أوبو (Oppo)</option>
+            <option value="Samsung">سامسونج (Samsung)</option>
+            <option value="Xiaomi">شاومي (Xiaomi)</option>
+            <option value="Other">ماركة أخرى</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>الموديل:</label>
+          <input type="text" id="modelName" placeholder="مثال: Oppo Reno 8 Pro" required>
+        </div>
+
+        <button type="submit" class="submit-btn">إضافة الجراب الآن</button>
+        <div id="status-msg" class="status-msg"></div>
+      </form>
+
+      <!-- قائمة الجرابات للحذف -->
+      <div class="covers-list-section">
+        <h3>الأصناف والجرابات المتاحة (للحذف)</h3>
+        <div id="admin-covers-list">جاري تحميل الأصناف...</div>
       </div>
 
-      <div class="form-group">
-        <label>الموديل:</label>
-        <input type="text" id="modelName" placeholder="مثال: Oppo Reno 8 Pro" required>
-      </div>
-
-      <button type="submit" class="submit-btn">إضافة الجراب الآن</button>
-      <div id="status-msg" class="status-msg"></div>
-    </form>
-
-    <!-- قائمة إدارة الأصناف وحذفها -->
-    <div class="covers-list-section">
-      <h3>الأصناف والجرابات المتاحة (للحذف)</h3>
-      <div id="admin-covers-list">جاري تحميل الأصناف...</div>
-    </div>
-
-    <a href="index.html" class="nav-link">← العودة لمعرض الجرابات</a>
-  </main>
+      <a href="index.html" class="nav-link">← العودة لمعرض الجرابات</a>
+    </main>
+  </div>
 
   <script>
     const API_URL = "https://covers-store-server.vercel.app/api/covers";
     const SETTINGS_URL = "https://covers-store-server.vercel.app/api/settings";
     let isMaintenance = false;
+
+    // تسجيل الدخول البسيط (كلمة السر الافتراضية: admin123)
+    document.getElementById("login-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const pass = document.getElementById("admin-password").value;
+      if (pass === "admin123") {
+        document.getElementById("login-section").style.display = "none";
+        document.getElementById("admin-panel").style.display = "block";
+        fetchSettings();
+        loadAdminCovers();
+      } else {
+        document.getElementById("login-error").style.display = "block";
+      }
+    });
 
     async function fetchSettings() {
       try {
@@ -156,7 +231,6 @@
       } catch (err) { alert("حدث خطأ في العملية."); }
     }
 
-    // جلب وحذف الأصناف
     async function loadAdminCovers() {
       const listContainer = document.getElementById("admin-covers-list");
       try {
@@ -221,9 +295,6 @@
         }
       } catch (error) { statusMsg.innerText = "تعذر الاتصال بالسيرفر."; }
     });
-
-    fetchSettings();
-    loadAdminCovers();
   </script>
 </body>
 </html>

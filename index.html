@@ -3,32 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>معرض الجرابات الفاخرة</title>
+  <title>متجر الجرابات الفاخرة</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <h1>معرض الجرابات الملكية</h1>
-    <p>استعراض أفضل الأغطية والجرابات المميزة لهاتفك</p>
+  <!-- شريط التنقل المتحرك Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">📱 متجر الجرابات</a>
+      <ul class="nav-links">
+        <li><a href="#" onclick="filterByBrand('all')" class="active">الكل</a></li>
+        <li><a href="#" onclick="filterByBrand('Oppo')">أوبو</a></li>
+        <li><a href="#" onclick="filterByBrand('Samsung')">سامسونج</a></li>
+        <li><a href="#" onclick="filterByBrand('Xiaomi')">شاومي</a></li>
+        <li><a href="https://wa.me/201275551116" target="_blank" class="contact-nav-btn">💬 تواصل معنا</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header style="margin-top: 80px;">
+    <h1>تشكيلة الجرابات المتاحة</h1>
+    <p>اختر ماركة هاتفك واستكشف أحدث الجرابات</p>
   </header>
 
-  <!-- شريط البحث الجديد -->
-  <div class="search-container">
-    <input type="text" id="search-input" placeholder="ابحث عن جراب أو موديل معين..." oninput="handleSearch()">
-  </div>
+  <main>
+    <!-- شريط البحث -->
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="ابحث باسم الموديل أو نوع الجراب..." onkeyup="handleSearch()">
+    </div>
 
-  <!-- أزرار التصفية المعدلة (أوبو بدل آيفون) -->
-  <div class="filters">
-    <button class="filter-btn active" onclick="filterByBrand('all')">الكل</button>
-    <button class="filter-btn" onclick="filterByBrand('Oppo')">أوبو</button>
-    <button class="filter-btn" onclick="filterByBrand('Samsung')">سامسونج</button>
-    <button class="filter-btn" onclick="filterByBrand('Xiaomi')">شاومي</button>
-  </div>
+    <!-- أزرار الفلترة السريعة -->
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterByBrand('all')">الكل</button>
+      <button class="filter-btn" onclick="filterByBrand('Oppo')">Oppo</button>
+      <button class="filter-btn" onclick="filterByBrand('Samsung')">Samsung</button>
+      <button class="filter-btn" onclick="filterByBrand('Xiaomi')">Xiaomi</button>
+    </div>
 
-  <main class="container">
+    <!-- شبكة عرض الجرابات -->
     <div id="covers-container" class="covers-grid">
-      <!-- يتم تحميل الجرابات هنا تلقائياً -->
+      <div class="loading">جاري تحميل الجرابات...</div>
     </div>
   </main>
 
