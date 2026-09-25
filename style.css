@@ -1,15 +1,17 @@
 /* ====================================================
-   1. الإعدادات العامة والألوان (General Reset & Theme)
+   1. الإعدادات العامة والتصميم الزجاجي (Liquid Glass Theme)
    ==================================================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 body {
-  background: #0f172a;
+  /* خلفية متدرجة وسلسة مع توزيع إضاءات دائرية خلف الزجاج */
+  background: radial-gradient(circle at 20% 20%, #1e1b4b 0%, #0f172a 50%, #020617 100%);
+  background-attachment: fixed;
   color: #f8fafc;
   min-height: 100vh;
   direction: rtl;
@@ -17,25 +19,28 @@ body {
 }
 
 /* ====================================================
-   2. شريط التنقل العلوي المتحرك (Navigation Bar)
+   2. شريط التنقل الزجاجي (Liquid Glass Navbar)
    ==================================================== */
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1100px;
   z-index: 1000;
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 15px 25px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 25px;
+  padding: 12px 25px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-container {
-  max-width: 1100px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,66 +48,75 @@ body {
 
 .nav-logo {
   font-size: 1.3rem;
-  font-weight: 900;
-  color: #78ffd6;
+  font-weight: 800;
+  letter-spacing: -0.5px;
   text-decoration: none;
-  background: linear-gradient(135deg, #a8ff78 0%, #78ffd6 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #a5f3fc 50%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
 }
 
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
   margin: 0;
   padding: 0;
 }
 
 .nav-links a {
-  color: #e2e8f0;
+  color: #cbd5e1;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.95rem;
-  padding: 6px 12px;
-  border-radius: 20px;
+  padding: 8px 16px;
+  border-radius: 18px;
   transition: all 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: #78ffd6;
+  color: #fff;
   background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
 }
 
 .contact-nav-btn {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.8), rgba(5, 150, 105, 0.8)) !important;
   color: #fff !important;
   font-weight: 700 !important;
-  box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.contact-nav-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.5) !important;
 }
 
 .admin-nav-btn {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border: 1px solid rgba(120, 255, 214, 0.3) !important;
-  color: #78ffd6 !important;
-  padding: 6px 14px !important;
-  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #38bdf8 !important;
 }
 
 /* ====================================================
-   3. الهيدر والبحث والفلترة (Header & Search Bar)
+   3. الهيدر وشريط البحث (Header & Liquid Search)
    ==================================================== */
 header {
   text-align: center;
-  padding: 30px 20px 10px;
+  padding: 120px 20px 20px;
 }
 
 header h1 {
-  font-size: 2.2rem;
-  color: #78ffd6;
-  margin-bottom: 10px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
 }
 
 header p {
@@ -111,102 +125,120 @@ header p {
 }
 
 .search-box {
-  max-width: 500px;
-  margin: 20px auto 25px;
+  max-width: 520px;
+  margin: 30px auto 25px;
   padding: 0 15px;
 }
 
 .search-box input {
   width: 100%;
-  padding: 14px 20px;
+  padding: 16px 24px;
   font-size: 1rem;
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 30px;
   outline: none;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1),
+              0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
   box-sizing: border-box;
 }
 
 .search-box input:focus {
-  border-color: #78ffd6;
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 15px rgba(120, 255, 214, 0.3);
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.25),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.search-box input::placeholder {
+  color: #64748b;
 }
 
 .filter-bar {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 30px;
+  gap: 12px;
+  margin-bottom: 40px;
   flex-wrap: wrap;
 }
 
 .filter-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #e2e8f0;
-  padding: 8px 18px;
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  padding: 10px 22px;
+  border-radius: 25px;
   cursor: pointer;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .filter-btn.active, .filter-btn:hover {
-  background: #78ffd6;
-  color: #0f172a;
-  border-color: #78ffd6;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
 }
 
 /* ====================================================
-   4. عرض كروت الجرابات (Covers Grid & Cards)
+   4. كروت الجرابات الزجاجية (Liquid Cards)
    ==================================================== */
 .covers-grid {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 20px 50px;
+  padding: 0 20px 60px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
 }
 
 .cover-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 18px;
-  padding: 20px;
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .cover-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-  border-color: rgba(120, 255, 214, 0.3);
+  transform: translateY(-8px) scale(1.02);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5),
+              0 0 20px rgba(56, 189, 248, 0.15);
 }
 
 .brand-badge {
-  background: rgba(120, 255, 214, 0.15);
-  color: #78ffd6;
-  padding: 4px 10px;
-  border-radius: 12px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  padding: 5px 12px;
+  border-radius: 14px;
   font-size: 0.8rem;
-  font-weight: bold;
+  font-weight: 700;
   display: inline-block;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  width: fit-content;
 }
 
 .cover-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 6px;
-  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #f1f5f9;
 }
 
 .model-name {
@@ -217,13 +249,13 @@ header p {
 .loading, .no-data, .error-msg {
   grid-column: 1 / -1;
   text-align: center;
-  padding: 40px;
+  padding: 50px;
   font-size: 1.2rem;
-  color: #94a3b8;
+  color: #64748b;
 }
 
 /* ====================================================
-   5. شاشة الصيانة والـ Radar Loader (Uiverse Radar)
+   5. شاشة الصيانة والـ Radar Loader 
    ==================================================== */
 .maintenance-overlay {
   display: flex;
@@ -231,59 +263,64 @@ header p {
   align-items: center;
   min-height: 100vh;
   padding: 20px;
-  background: #0f172a;
+  background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #020617 100%);
   text-align: center;
 }
 
 .maintenance-card {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 25px;
-  padding: 40px 25px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(30px) saturate(200%);
+  -webkit-backdrop-filter: blur(30px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 30px;
+  padding: 45px 30px;
   max-width: 500px;
   width: 100%;
-  backdrop-filter: blur(15px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6),
+              inset 0 1px 0 rgba(255, 255, 255, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .maintenance-card h2 {
-  color: #78ffd6;
-  margin-top: 25px;
-  margin-bottom: 10px;
-  font-size: 1.6rem;
+  color: #38bdf8;
+  margin-top: 30px;
+  margin-bottom: 12px;
+  font-size: 1.7rem;
+  font-weight: 800;
 }
 
 .animated-text {
   color: #cbd5e1;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   font-size: 1.05rem;
 }
 
 .contact-box {
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(52, 211, 153, 0.3);
-  padding: 15px 25px;
-  border-radius: 15px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  padding: 18px 25px;
+  border-radius: 20px;
   width: 100%;
   box-sizing: border-box;
+  backdrop-filter: blur(10px);
 }
 
 .contact-box p {
   font-size: 0.95rem;
-  color: #cbd5e1;
+  color: #94a3b8;
   margin-bottom: 6px;
 }
 
 .phone-number {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 900;
-  color: #78ffd6;
+  color: #34d399;
   text-decoration: none;
   display: inline-block;
   direction: ltr;
+  text-shadow: 0 0 15px rgba(52, 211, 153, 0.4);
 }
 
 .loader-wrapper {
@@ -301,7 +338,7 @@ header p {
   background: transparent;
   border-radius: 50%;
   box-shadow: 25px 25px 75px rgba(0,0,0,0.55);
-  border: 1px solid #333;
+  border: 1px solid rgba(255,255,255,0.1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -313,7 +350,7 @@ header p {
   position: absolute;
   inset: 30px;
   background: transparent;
-  border: 1px dashed #444;
+  border: 1px dashed rgba(255,255,255,0.2);
   border-radius: 50%;
   box-shadow: inset -5px -5px 25px rgba(0,0,0,0.25),
   inset 5px 5px 35px rgba(0,0,0,0.25);
@@ -325,7 +362,7 @@ header p {
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  border: 1px dashed #444;
+  border: 1px dashed rgba(255,255,255,0.2);
   box-shadow: inset -5px -5px 25px rgba(0,0,0,0.25),
   inset 5px 5px 35px rgba(0,0,0,0.25);
 }
