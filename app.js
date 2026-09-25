@@ -26,17 +26,31 @@ async function checkMaintenance() {
   return false;
 }
 
-// عرض رسالة الصيانة بالرقم والأنيميشن مباشرة
+// عرض رسالة الصيانة بالأنيميشن المخصص
 function showMaintenanceOverlay() {
   document.body.innerHTML = `
     <div class="maintenance-overlay">
       <div class="maintenance-card">
-        <div class="close-badge">❌</div>
         <div class="gear-icon">⚙️</div>
-        <h2>الموقع حالياً قيد التعديل والصيانة</h2>
-        <p class="animated-text">نعمل حالياً على تجهيز وإضافة أحدث الجرابات الفاخرة...</p>
         
-        <div class="maintenance-bar"><span></span></div>
+        <!-- أنيميشن النص المتحرك المخصص من Uiverse -->
+        <div class="loader-wrapper">
+          <div class="loader">
+            <div class="text"><span>MAINTENANCE</span></div>
+            <div class="text"><span>MAINTENANCE</span></div>
+            <div class="text"><span>MAINTENANCE</span></div>
+            <div class="text"><span>MAINTENANCE</span></div>
+            <div class="text"><span>MAINTENANCE</span></div>
+            <div class="text"><span>MAINTENANCE</span></div>
+            <div class="text"><span>MAINTENANCE</span></div>
+            <div class="text"><span>MAINTENANCE</span></div>
+            <div class="text"><span>MAINTENANCE</span></div>
+            <div class="line"></div>
+          </div>
+        </div>
+
+        <h2>الموقع حالياً قيد التعديل والصيانة</h2>
+        <p class="animated-text">نعمل على إضافة وتجهيز أحدث الجرابات...</p>
 
         <div class="contact-box">
           <p>للتواصل والطلبات المباشرة:</p>
@@ -99,8 +113,8 @@ function renderCovers(covers) {
 function filterByBrand(brand) {
   const buttons = document.querySelectorAll(".filter-btn");
   buttons.forEach(btn => btn.classList.remove("active"));
-  if (event && event.target) {
-    event.target.classList.add("active");
+  if (window.event && window.event.target) {
+    window.event.target.classList.add("active");
   }
   const searchInput = document.getElementById("search-input");
   if (searchInput) searchInput.value = "";
