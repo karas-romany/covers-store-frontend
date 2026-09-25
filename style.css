@@ -1,8 +1,16 @@
 /* ====================================================
-   1. الإعدادات العامة والألوان الفاتحة الثابتة (Always Light Theme)
+   1. إلغاء الـ Dark Mode تماماً على كافة الشاشات والتلفزيونات
    ==================================================== */
 :root {
   color-scheme: light !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root, body, html {
+    color-scheme: light !important;
+    background-color: #cbd5e1 !important;
+    color: #0f172a !important;
+  }
 }
 
 * {
@@ -13,9 +21,9 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* إجبار الخلفية الفاتحة دائماً ومنع تحولها للداكن */
+/* خلفية فاتحة ومضيئة ثابتة لا تتأثر بإعدادات الجهاز */
 body, body.light-theme {
-  background: radial-gradient(circle at 50% 0%, #e2e8f0 0%, #cbd5e1 50%, #94a3b8 100%) !important;
+  background: radial-gradient(circle at 50% 0%, #f1f5f9 0%, #cbd5e1 60%, #94a3b8 100%) !important;
   background-attachment: fixed !important;
   color: #0f172a !important;
   min-height: 100vh;
@@ -24,7 +32,7 @@ body, body.light-theme {
 }
 
 /* ====================================================
-   2. شريط التنقل المتجاوب (Responsive Glass Navbar)
+   2. شريط التنقل الزجاجي المضيء (Glass Navbar)
    ==================================================== */
 .navbar {
   position: fixed;
@@ -34,13 +42,13 @@ body, body.light-theme {
   width: 92%;
   max-width: 1100px;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88) !important;
   backdrop-filter: blur(25px) saturate(200%);
   -webkit-backdrop-filter: blur(25px) saturate(200%);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.95);
   border-radius: 20px;
   padding: 12px 22px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.1);
   transition: all 0.3s ease;
 }
 
@@ -53,7 +61,7 @@ body, body.light-theme {
 }
 
 .nav-logo {
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   font-weight: 900;
   text-decoration: none;
   background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
@@ -72,7 +80,7 @@ body, body.light-theme {
 }
 
 .nav-links a {
-  color: #1e293b;
+  color: #1e293b !important;
   text-decoration: none;
   font-weight: 700;
   font-size: 0.9rem;
@@ -82,26 +90,25 @@ body, body.light-theme {
 }
 
 .nav-links a:hover {
-  color: #0284c7;
+  color: #0284c7 !important;
   background: rgba(2, 132, 199, 0.12);
-  transform: translateY(-1px);
 }
 
 .contact-nav-btn {
   background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
   color: #ffffff !important;
   font-weight: 800 !important;
-  box-shadow: 0 4px 15px rgba(5, 150, 105, 0.4);
+  box-shadow: 0 4px 15px rgba(5, 150, 105, 0.35);
 }
 
 .admin-nav-btn {
   background: #1e293b !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 15px rgba(30, 41, 59, 0.25);
+  box-shadow: 0 4px 15px rgba(30, 41, 59, 0.2);
 }
 
 /* ====================================================
-   3. الهيدر وشريط البحث (Header & Main Store)
+   3. العنوان الكبير والزاهي بأنيميشن النيون
    ==================================================== */
 header {
   text-align: center;
@@ -119,7 +126,7 @@ header h1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shineGradient 4s linear infinite, textPulse 3s ease-in-out infinite;
-  filter: drop-shadow(0 8px 20px rgba(37, 99, 235, 0.25));
+  filter: drop-shadow(0 8px 20px rgba(37, 99, 235, 0.2));
 }
 
 @keyframes shineGradient {
@@ -132,11 +139,12 @@ header h1 {
 }
 
 header p {
-  color: #334155;
+  color: #334155 !important;
   font-size: 1.15rem;
   font-weight: 700;
 }
 
+/* صندوق البحث والفلترة */
 .search-box {
   max-width: 520px;
   margin: 25px auto;
@@ -147,8 +155,8 @@ header p {
   width: 100%;
   padding: 16px 22px;
   font-size: 1rem;
-  color: #0f172a;
-  background: rgba(255, 255, 255, 0.9);
+  color: #0f172a !important;
+  background: rgba(255, 255, 255, 0.9) !important;
   backdrop-filter: blur(15px);
   border: 2px solid rgba(255, 255, 255, 0.95);
   border-radius: 30px;
@@ -160,7 +168,7 @@ header p {
 
 .search-box input:focus {
   border-color: #0284c7;
-  background: #ffffff;
+  background: #ffffff !important;
   box-shadow: 0 0 20px rgba(2, 132, 199, 0.3);
 }
 
@@ -174,205 +182,151 @@ header p {
 }
 
 .filter-btn {
-  background: #ffffff;
+  background: #ffffff !important;
   border: 1px solid #cbd5e1;
-  color: #334155;
+  color: #334155 !important;
   padding: 10px 22px;
   border-radius: 20px;
   cursor: pointer;
   font-weight: 800;
   font-size: 0.9rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
 .filter-btn.active {
-  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+  color: #ffffff !important;
   border-color: transparent;
   box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
 }
 
 /* ====================================================
-   4. تنسيق لوحة التحكم الزاهية (Vibrant Admin Styles)
+   4. كروت الجرابات الواقعية والزرار الإضافي
    ==================================================== */
-.admin-container {
-  max-width: 750px;
+.covers-grid {
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 130px 20px 60px;
+  padding: 0 15px 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 22px;
 }
 
-.admin-card {
+.cover-card {
   background: rgba(255, 255, 255, 0.85) !important;
-  backdrop-filter: blur(25px) saturate(200%);
-  -webkit-backdrop-filter: blur(25px) saturate(200%);
-  border: 2px solid rgba(255, 255, 255, 0.95);
-  border-radius: 30px;
-  padding: 40px 30px;
-  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
-}
-
-.admin-title {
-  font-size: 2.2rem;
-  font-weight: 900;
-  color: #0f172a !important;
-  margin-bottom: 6px;
-  text-align: center;
-}
-
-.admin-subtitle {
-  color: #475569 !important;
-  font-size: 1rem;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 35px;
-}
-
-.control-section {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
   border-radius: 22px;
-  padding: 25px;
-  margin-bottom: 25px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
-}
-
-.control-section h3 {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #0f172a !important;
-  margin-bottom: 8px;
-}
-
-.switch-row {
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  gap: 20px;
+  position: relative;
 }
 
-.switch-info p {
+.cover-card:hover {
+  transform: translateY(-8px);
+  background: #ffffff !important;
+  box-shadow: 0 20px 40px rgba(2, 132, 199, 0.18);
+  border-color: rgba(2, 132, 199, 0.4);
+}
+
+.brand-badge {
+  background: rgba(2, 132, 199, 0.12);
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  color: #0284c7 !important;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  display: inline-block;
+  margin-bottom: 12px;
+  width: fit-content;
+}
+
+.cover-card h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: #0f172a !important;
+}
+
+.model-name {
   color: #64748b !important;
   font-size: 0.92rem;
   font-weight: 600;
+  margin-bottom: 15px;
 }
 
-/* تصميم مفتاح التفعيل (Toggle Switch) */
-.toggle-switch {
-  position: relative;
-  display: inline-block;
-  width: 62px;
-  height: 34px;
-  flex-shrink: 0;
-}
-
-.toggle-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  inset: 0;
-  background-color: #cbd5e1;
-  transition: .4s;
-  border-radius: 34px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-input:checked + .slider {
-  background-color: #059669;
-}
-
-input:checked + .slider:before {
-  transform: translateX(28px);
-}
-
-.status-msg {
-  margin-top: 15px;
+/* لمسة واقعية: زر الطلب السريع للجراب */
+.card-order-btn {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #0284c7 !important;
   font-weight: 800;
-  font-size: 0.95rem;
-  padding: 10px 15px;
-  border-radius: 12px;
-  text-align: center;
-  background: #f1f5f9 !important;
-  color: #334155 !important;
-}
-
-/* نمذجة نماذج إدخال الأدمن */
-.admin-form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin-top: 15px;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.form-group label {
-  font-weight: 800;
-  font-size: 0.95rem;
-  color: #1e293b !important;
-}
-
-.form-group input, .form-group select {
-  width: 100%;
-  padding: 14px 18px;
-  font-size: 0.95rem;
-  color: #0f172a !important;
-  background: #f8fafc !important;
-  border: 1.5px solid #cbd5e1;
+  font-size: 0.88rem;
+  padding: 10px;
   border-radius: 14px;
-  outline: none;
+  text-align: center;
+  text-decoration: none;
+  display: block;
   transition: all 0.25s ease;
-  box-sizing: border-box;
 }
 
-.form-group input:focus, .form-group select:focus {
-  border-color: #0284c7;
-  background: #ffffff !important;
-  box-shadow: 0 0 15px rgba(2, 132, 199, 0.2);
-}
-
-.submit-btn {
-  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+.cover-card:hover .card-order-btn {
+  background: #0284c7 !important;
   color: #ffffff !important;
-  border: none;
-  padding: 15px;
-  border-radius: 16px;
-  font-weight: 900;
-  font-size: 1.05rem;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35);
-  transition: all 0.3s ease;
-  margin-top: 10px;
-}
-
-.submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 25px rgba(2, 132, 199, 0.5);
+  border-color: transparent;
 }
 
 /* ====================================================
-   5. شاشة الصيانة الفاخرة (Maintenance Screen)
+   5. تصميم انيميشن التحميل الحديث والواقعي (Modern Glow Loader)
+   ==================================================== */
+.loading {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+/* حلقة تحميل نيون ثلاثية الأبعاد خفيفة وعصرية */
+.modern-spinner {
+  width: 55px;
+  height: 55px;
+  border: 5px solid rgba(2, 132, 199, 0.15);
+  border-top: 5px solid #0284c7;
+  border-right: 5px solid #7c3aed;
+  border-radius: 50%;
+  animation: spinGlow 0.9s linear infinite;
+  margin-bottom: 18px;
+  box-shadow: 0 0 15px rgba(2, 132, 199, 0.2);
+}
+
+@keyframes spinGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #334155 !important;
+  animation: pulseText 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulseText {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* ====================================================
+   6. شاشة الصيانة الفاخرة (Light Animated Maintenance Screen)
    ==================================================== */
 .maintenance-overlay {
   display: flex;
@@ -380,12 +334,12 @@ input:checked + .slider:before {
   align-items: center;
   min-height: 100vh;
   padding: 20px;
-  background: radial-gradient(circle at 50% 30%, #e2e8f0 0%, #cbd5e1 60%, #94a3b8 100%) !important;
+  background: radial-gradient(circle at 50% 30%, #f1f5f9 0%, #cbd5e1 60%, #94a3b8 100%) !important;
   text-align: center;
 }
 
 .maintenance-card {
-  background: rgba(255, 255, 255, 0.85) !important;
+  background: rgba(255, 255, 255, 0.88) !important;
   backdrop-filter: blur(30px) saturate(200%);
   -webkit-backdrop-filter: blur(30px) saturate(200%);
   border: 2px solid rgba(255, 255, 255, 0.95);
@@ -393,7 +347,7 @@ input:checked + .slider:before {
   padding: 45px 25px;
   max-width: 480px;
   width: 100%;
-  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.15);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.12);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -458,13 +412,14 @@ input:checked + .slider:before {
   margin: 10px 0;
 }
 
+/* رادار أنيق وفاتح للشاشات المقفولة */
 .loader {
   position: relative;
   width: 180px;
   height: 180px;
   background: #ffffff !important;
   border-radius: 50%;
-  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.1);
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
   border: 2px solid rgba(2, 132, 199, 0.3);
   display: flex;
   align-items: center;
@@ -521,38 +476,30 @@ input:checked + .slider:before {
 }
 
 /* ====================================================
-   6. التجاوب الكامل مع الهواتف الذكية (Mobile Responsive)
+   7. التجاوب مع التلفزيون والموبايل (Mobile & Smart TV Responsive)
    ==================================================== */
 @media (max-width: 600px) {
   .navbar {
     top: 8px;
     width: 95%;
     padding: 8px 12px;
-    border-radius: 16px;
   }
 
-  .admin-container {
-    padding-top: 110px;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  .admin-card {
-    padding: 25px 15px;
-    border-radius: 22px;
-  }
-
-  .admin-title {
-    font-size: 1.7rem;
-  }
-
-  .switch-row {
-    flex-direction: row;
-    align-items: center;
+  header {
+    padding-top: 125px;
   }
 
   header h1 {
-    font-size: 2rem;
+    font-size: 2.1rem;
+  }
+
+  .covers-grid {
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 12px;
+  }
+
+  .cover-card {
+    padding: 14px;
   }
 
   .loader {
