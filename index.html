@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجر الجرابات - Mobile Covers Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>📱 متجر جرابات الموبايل</h1>
+    <p>أفضل الجرابات لجميع الموديلات (أوبو، سامسونج، ريلمي...)</p>
+  </header>
+
+  <main class="container">
+    <!-- أزرار الفلترة حسب الماركة -->
+    <div class="filter-buttons">
+      <button onclick="fetchCovers('')">الكل</button>
+      <button onclick="fetchCovers('Oppo')">أوبو (Oppo)</button>
+      <button onclick="fetchCovers('Samsung')">سامسونج (Samsung)</button>
+      <button onclick="fetchCovers('Realme')">ريلمي (Realme)</button>
+    </div>
+
+    <!-- مكان عرض الجرابات -->
+    <div id="covers-list" class="covers-grid">
+      <p>جاري تحميل الجرابات...</p>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
