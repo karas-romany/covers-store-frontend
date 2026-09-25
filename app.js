@@ -26,31 +26,21 @@ async function checkMaintenance() {
   return false;
 }
 
-// عرض رسالة الصيانة بالأنيميشن المخصص
+// عرض رسالة الصيانة بالأنيميشن المخصص (الرادار المكبر)
 function showMaintenanceOverlay() {
   document.body.innerHTML = `
     <div class="maintenance-overlay">
       <div class="maintenance-card">
-        <div class="gear-icon">⚙️</div>
         
-        <!-- أنيميشن النص المتحرك المخصص من Uiverse -->
+        <!-- أنيميشن الرادار المكبر المخصص من Uiverse -->
         <div class="loader-wrapper">
           <div class="loader">
-            <div class="text"><span>MAINTENANCE</span></div>
-            <div class="text"><span>MAINTENANCE</span></div>
-            <div class="text"><span>MAINTENANCE</span></div>
-            <div class="text"><span>MAINTENANCE</span></div>
-            <div class="text"><span>MAINTENANCE</span></div>
-            <div class="text"><span>MAINTENANCE</span></div>
-            <div class="text"><span>MAINTENANCE</span></div>
-            <div class="text"><span>MAINTENANCE</span></div>
-            <div class="text"><span>MAINTENANCE</span></div>
-            <div class="line"></div>
+            <span></span>
           </div>
         </div>
 
         <h2>الموقع حالياً قيد التعديل والصيانة</h2>
-        <p class="animated-text">نعمل على إضافة وتجهيز أحدث الجرابات...</p>
+        <p class="animated-text">نعمل حالياً على تجهيز وإضافة أحدث الجرابات الفاخرة...</p>
 
         <div class="contact-box">
           <p>للتواصل والطلبات المباشرة:</p>
