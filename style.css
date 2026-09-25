@@ -1,7 +1,118 @@
-/* شريط البحث */
+/* ====================================================
+   1. الإعدادات العامة والألوان (General Reset & Theme)
+   ==================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: #f8fafc;
+  min-height: 100vh;
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+/* ====================================================
+   2. شريط التنقل العلوي المتحرك (Navigation Bar)
+   ==================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 15px 25px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #78ffd6;
+  text-decoration: none;
+  background: linear-gradient(135deg, #a8ff78 0%, #78ffd6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 12px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #78ffd6;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.contact-nav-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+.admin-nav-btn {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(120, 255, 214, 0.3) !important;
+  color: #78ffd6 !important;
+  padding: 6px 14px !important;
+  border-radius: 20px !important;
+}
+
+/* ====================================================
+   3. الهيدر والبحث والفلترة (Header & Search Bar)
+   ==================================================== */
+header {
+  text-align: center;
+  padding: 30px 20px 10px;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  color: #78ffd6;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: #94a3b8;
+  font-size: 1.1rem;
+}
+
 .search-box {
   max-width: 500px;
-  margin: 20px auto 30px;
+  margin: 20px auto 25px;
   padding: 0 15px;
 }
 
@@ -26,11 +137,94 @@
   box-shadow: 0 0 15px rgba(120, 255, 214, 0.3);
 }
 
-.search-box input::placeholder {
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background: #78ffd6;
+  color: #0f172a;
+  border-color: #78ffd6;
+}
+
+/* ====================================================
+   4. عرض كروت الجرابات (Covers Grid & Cards)
+   ==================================================== */
+.covers-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.cover-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border-color: rgba(120, 255, 214, 0.3);
+}
+
+.brand-badge {
+  background: rgba(120, 255, 214, 0.15);
+  color: #78ffd6;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.cover-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.model-name {
+  color: #94a3b8;
+  font-size: 0.95rem;
+}
+
+.loading, .no-data, .error-msg {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  font-size: 1.2rem;
   color: #94a3b8;
 }
 
-/* تصميم شاشة الصيانة */
+/* ====================================================
+   5. شاشة الصيانة والـ Radar Loader (Uiverse Radar)
+   ==================================================== */
 .maintenance-overlay {
   display: flex;
   justify-content: center;
@@ -162,11 +356,6 @@
 }
 
 @keyframes radar81 {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
