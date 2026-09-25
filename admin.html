@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>لوحة التحكم - إدارة الموقع</title>
+  <title>لوحة التحكم - إدارة الجرابات والموقع</title>
   <link rel="stylesheet" href="style.css">
   <style>
     .admin-container {
-      max-width: 500px;
+      max-width: 650px;
       margin: 30px auto;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -17,7 +17,7 @@
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     }
     .toggle-section {
-      background: rgba(0,0,0,0.2);
+      background: rgba(0,0,0,0.25);
       border: 1px solid rgba(255,255,255,0.1);
       padding: 20px;
       border-radius: 15px;
@@ -26,78 +26,65 @@
       justify-content: space-between;
       align-items: center;
     }
-    .toggle-section span {
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
     .switch-btn {
       padding: 10px 20px;
       border: none;
       border-radius: 20px;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
-    .switch-btn.active {
-      background: #ef4444;
-      color: #fff;
-    }
-    .switch-btn.inactive {
-      background: #10b981;
-      color: #fff;
-    }
-    .form-group {
-      margin-bottom: 20px;
-      text-align: right;
-    }
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 700;
-      color: #e2e8f0;
-    }
+    .switch-btn.active { background: #ef4444; color: #fff; }
+    .switch-btn.inactive { background: #10b981; color: #fff; }
+
+    .form-group { margin-bottom: 20px; text-align: right; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 700; color: #e2e8f0; }
     .form-group input, .form-group select {
-      width: 100%;
-      padding: 12px 15px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      background: rgba(0, 0, 0, 0.3);
-      color: #fff;
-      font-size: 1rem;
-      outline: none;
+      width: 100%; padding: 12px 15px; border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(0, 0, 0, 0.3);
+      color: #fff; font-size: 1rem; outline: none;
     }
+
     .submit-btn {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
+      width: 100%; padding: 12px; border: none; border-radius: 10px;
       background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      color: #fff;
-      font-size: 1.1rem;
-      font-weight: 700;
-      cursor: pointer;
+      color: #fff; font-size: 1.1rem; font-weight: 700; cursor: pointer;
     }
+
+    /* قائمة الجرابات للحذف */
+    .covers-list-section { margin-top: 40px; }
+    .covers-list-section h3 { color: #78ffd6; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+    .item-row {
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(0,0,0,0.2); padding: 12px 15px; border-radius: 10px; margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .delete-btn {
+      background: #ef4444; color: white; border: none; padding: 6px 14px;
+      border-radius: 8px; cursor: pointer; font-weight: 700; transition: 0.2s;
+    }
+    .delete-btn:hover { background: #dc2626; }
+    
     .status-msg { margin-top: 15px; text-align: center; font-weight: 700; }
-    .nav-link { display: block; text-align: center; margin-top: 20px; color: #78ffd6; text-decoration: none; }
+    .nav-link { display: block; text-align: center; margin-top: 25px; color: #78ffd6; text-decoration: none; }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>لوحة التحكم والإدارة</h1>
-    <p>التحكم في حالة الموقع وإضافة الجرابات</p>
+    <h1>لوحة الإدارة الشاملة</h1>
+    <p>التحكم في وضع الصيانة وإضافة/حذف الأصناف</p>
   </header>
 
   <main class="admin-container">
-    <!-- قسم التحكم في وضع الصيانة -->
+    <!-- التحكم في الصيانة -->
     <div class="toggle-section">
-      <span>حالة وضع الصيانة:</span>
+      <span>وضع الصيانة (قفل الموقع):</span>
       <button id="toggle-maintenance-btn" class="switch-btn inactive" onclick="toggleMaintenance()">جاري الفحص...</button>
     </div>
 
-    <!-- نموذج إضافة الجرابات -->
+    <!-- إضافة صنف -->
     <form id="add-cover-form">
-      <h3 style="margin-bottom: 15px; text-align: right; color: #78ffd6;">إضافة جراب جديد</h3>
+      <h3 style="margin-bottom: 15px; color: #78ffd6;">إضافة صنف/جراب جديد</h3>
       <div class="form-group">
         <label>عنوان/وصف الجراب:</label>
         <input type="text" id="title" placeholder="مثال: جراب سيليكون أسود" required>
@@ -122,6 +109,12 @@
       <div id="status-msg" class="status-msg"></div>
     </form>
 
+    <!-- قائمة إدارة الأصناف وحذفها -->
+    <div class="covers-list-section">
+      <h3>الأصناف والجرابات المتاحة (للحذف)</h3>
+      <div id="admin-covers-list">جاري تحميل الأصناف...</div>
+    </div>
+
     <a href="index.html" class="nav-link">← العودة لمعرض الجرابات</a>
   </main>
 
@@ -130,30 +123,26 @@
     const SETTINGS_URL = "https://covers-store-server.vercel.app/api/settings";
     let isMaintenance = false;
 
-    // جلب حالة وضع الصيانة الحالية
     async function fetchSettings() {
       try {
         const res = await fetch(SETTINGS_URL);
         const settings = await res.json();
         isMaintenance = settings.isMaintenance;
         updateToggleButton();
-      } catch (err) {
-        console.error(err);
-      }
+      } catch (err) { console.error(err); }
     }
 
     function updateToggleButton() {
       const btn = document.getElementById("toggle-maintenance-btn");
       if (isMaintenance) {
-        btn.innerText = "إغلاق وضع الصيانة (فتح الموقع)";
+        btn.innerText = "إغلاق الصيانة (فتح الموقع)";
         btn.className = "switch-btn active";
       } else {
-        btn.innerText = "تفعيل وضع الصيانة (قفل الموقع)";
+        btn.innerText = "تفعيل الصيانة (قفل الموقع)";
         btn.className = "switch-btn inactive";
       }
     }
 
-    // تبديل وضع الصيانة
     async function toggleMaintenance() {
       try {
         const res = await fetch(SETTINGS_URL, {
@@ -164,10 +153,45 @@
         const settings = await res.json();
         isMaintenance = settings.isMaintenance;
         updateToggleButton();
-        alert(isMaintenance ? "تم قفل الموقع وتفعيل وضع الصيانة!" : "تم فتح الموقع للزوار بنجاح!");
+      } catch (err) { alert("حدث خطأ في العملية."); }
+    }
+
+    // جلب وحذف الأصناف
+    async function loadAdminCovers() {
+      const listContainer = document.getElementById("admin-covers-list");
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+        if (!data || data.length === 0) {
+          listContainer.innerHTML = "<p>لا توجد أصناف حالياً.</p>";
+          return;
+        }
+
+        listContainer.innerHTML = "";
+        data.forEach(item => {
+          const row = document.createElement("div");
+          row.className = "item-row";
+          row.innerHTML = `
+            <div>
+              <strong>[${item.brand}]</strong> ${item.title} - <small>${item.modelName}</small>
+            </div>
+            <button class="delete-btn" onclick="deleteCover('${item._id}')">حذف 🗑️</button>
+          `;
+          listContainer.appendChild(row);
+        });
       } catch (err) {
-        alert("حدث خطأ أثناء تغيير الحالة.");
+        listContainer.innerHTML = "<p>خطأ في جلب الأصناف.</p>";
       }
+    }
+
+    async function deleteCover(id) {
+      if (!confirm("هل أنت تأكد من إزالة هذا الصنف؟")) return;
+      try {
+        const res = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+        if (res.ok) {
+          loadAdminCovers();
+        }
+      } catch (err) { alert("تعذر الحذف."); }
     }
 
     document.getElementById("add-cover-form").addEventListener("submit", async (e) => {
@@ -191,19 +215,15 @@
 
         if (response.ok) {
           statusMsg.style.color = "#34d399";
-          statusMsg.innerText = "تمت إضافة الجراب بنجاح! 🎉";
+          statusMsg.innerText = "تمت إضافة الصنف بنجاح! 🎉";
           document.getElementById("add-cover-form").reset();
-        } else {
-          statusMsg.style.color = "#f87171";
-          statusMsg.innerText = "حدث خطأ أثناء الإضافة.";
+          loadAdminCovers();
         }
-      } catch (error) {
-        statusMsg.style.color = "#f87171";
-        statusMsg.innerText = "تعذر الاتصال بالسيرفر.";
-      }
+      } catch (error) { statusMsg.innerText = "تعذر الاتصال بالسيرفر."; }
     });
 
     fetchSettings();
+    loadAdminCovers();
   </script>
 </body>
 </html>

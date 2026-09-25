@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// فحص وضع الصيانة
+// فحص حالة الصيانة
 async function checkMaintenance() {
   try {
-    const res = await fetch(SETTINGS_URL);
+    const res = await fetch(SETTINGS_URL + "?t=" + new Date().getTime());
     const settings = await res.json();
     
     if (settings && settings.isMaintenance) {
@@ -26,15 +26,22 @@ async function checkMaintenance() {
   return false;
 }
 
-// عرض واجهة التعديل والملاحة الفاخرة
+// عرض رسالة الصيانة بالرقم والأنيميشن مباشرة
 function showMaintenanceOverlay() {
   document.body.innerHTML = `
     <div class="maintenance-overlay">
       <div class="maintenance-card">
+        <div class="close-badge">❌</div>
         <div class="gear-icon">⚙️</div>
-        <h2>الموقع تحت الصيانة والتطوير</h2>
-        <p class="animated-text">نعمل حالياً على إضافة جرابات وتحديثات جديدة وفاخرة لك...</p>
+        <h2>الموقع حالياً قيد التعديل والصيانة</h2>
+        <p class="animated-text">نعمل حالياً على تجهيز وإضافة أحدث الجرابات الفاخرة...</p>
+        
         <div class="maintenance-bar"><span></span></div>
+
+        <div class="contact-box">
+          <p>للتواصل والطلبات المباشرة:</p>
+          <a href="https://wa.me/201275551116" target="_blank" class="phone-number">📞 01275551116</a>
+        </div>
       </div>
     </div>
   `;
@@ -67,6 +74,7 @@ async function fetchCovers(brand = "") {
 
 function renderCovers(covers) {
   const container = document.getElementById("covers-container");
+  if (!container) return;
   container.innerHTML = "";
 
   if (covers.length === 0) {
@@ -91,13 +99,18 @@ function renderCovers(covers) {
 function filterByBrand(brand) {
   const buttons = document.querySelectorAll(".filter-btn");
   buttons.forEach(btn => btn.classList.remove("active"));
-  event.target.classList.add("active");
-  document.getElementById("search-input").value = "";
+  if (event && event.target) {
+    event.target.classList.add("active");
+  }
+  const searchInput = document.getElementById("search-input");
+  if (searchInput) searchInput.value = "";
   fetchCovers(brand === 'all' ? '' : brand);
 }
 
 function handleSearch() {
-  const query = document.getElementById("search-input").value.toLowerCase().trim();
+  const searchInput = document.getElementById("search-input");
+  if (!searchInput) return;
+  const query = searchInput.value.toLowerCase().trim();
   const filteredCovers = allCovers.filter(cover => {
     const titleMatch = (cover.title || "").toLowerCase().includes(query);
     const modelMatch = (cover.modelName || "").toLowerCase().includes(query);
