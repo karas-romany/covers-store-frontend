@@ -10,7 +10,7 @@
 }
 
 body {
-  /* خلفية فاتحة ناعمة تتوسط بين الفاتح جداً والداكن مريحة جداً للعين */
+  /* خلفية فاتحة ناعمة مريحة جداً للعين */
   background: radial-gradient(circle at 50% 0%, #e2e8f0 0%, #cbd5e1 50%, #94a3b8 100%);
   background-attachment: fixed;
   color: #0f172a;
@@ -85,7 +85,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* زراير قوية ومتباينة وضاحية جداً */
+/* زراير واضحة جداً ومتباينة */
 .contact-nav-btn {
   background: linear-gradient(135deg, #059669 0%, #10b981 100%) !important;
   color: #ffffff !important;
@@ -112,25 +112,58 @@ body {
 }
 
 /* ====================================================
-   3. الهيدر وشريط البحث (Header & Search Bar)
+   3. الهيدر والعنوان المبهر بأنيميشن الزاهي (Animated Huge Title)
    ==================================================== */
 header {
   text-align: center;
-  padding: 125px 15px 15px;
+  padding: 135px 15px 20px;
 }
 
+/* العنوان الكبير والزاهي والحي */
 header h1 {
-  font-size: 2.2rem;
+  font-size: 3.2rem;
   font-weight: 900;
-  color: #0f172a;
-  margin-bottom: 8px;
-  letter-spacing: -0.5px;
+  letter-spacing: -1px;
+  margin-bottom: 12px;
+  display: inline-block;
+  
+  /* ألوان نيون متدرجة زاهية */
+  background: linear-gradient(
+    120deg, 
+    #2563eb 0%, 
+    #7c3aed 25%, 
+    #db2777 50%, 
+    #059669 75%, 
+    #2563eb 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* أنيميشن تحريك الألوان والتكبير بالنبض */
+  animation: shineGradient 4s linear infinite, textPulse 3s ease-in-out infinite;
+  filter: drop-shadow(0 8px 20px rgba(37, 99, 235, 0.25));
+}
+
+@keyframes shineGradient {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes textPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
 }
 
 header p {
-  color: #475569;
-  font-size: 1.05rem;
-  font-weight: 600;
+  color: #334155;
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
 .search-box {
@@ -164,7 +197,7 @@ header p {
   color: #64748b;
 }
 
-/* أزرار الفلترة الواضحة والمتباينة */
+/* أزرار الفلترة الواضحة */
 .filter-bar {
   display: flex;
   justify-content: center;
@@ -319,7 +352,6 @@ header p {
   line-height: 1.6;
 }
 
-/* صندوق اتصال مجسم وبأنيميشن نيون حية */
 .contact-box {
   background: #ffffff;
   border: 2px solid #10b981;
@@ -360,7 +392,7 @@ header p {
   margin: 10px 0;
 }
 
-/* رادار أنيق وفاتح للشاشات المقفولة */
+/* رادار الصيانة */
 .loader {
   position: relative;
   width: 180px;
@@ -453,11 +485,12 @@ header p {
   }
 
   header {
-    padding-top: 120px;
+    padding-top: 125px;
   }
 
+  /* تكيف العنوان للعمل بسلاسة على شاشات الموبايل الصغير */
   header h1 {
-    font-size: 1.7rem;
+    font-size: 2rem;
   }
 
   .covers-grid {
