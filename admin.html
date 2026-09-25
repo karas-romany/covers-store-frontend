@@ -3,18 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>لوحة التحكم - إضافة جراب جديد</title>
+  <title>لوحة التحكم - إدارة الموقع</title>
   <link rel="stylesheet" href="style.css">
   <style>
     .admin-container {
       max-width: 500px;
-      margin: 40px auto;
+      margin: 30px auto;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 20px;
       padding: 30px;
       backdrop-filter: blur(12px);
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+    .toggle-section {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .toggle-section span {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .switch-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .switch-btn.active {
+      background: #ef4444;
+      color: #fff;
+    }
+    .switch-btn.inactive {
+      background: #10b981;
+      color: #fff;
     }
     .form-group {
       margin-bottom: 20px;
@@ -36,9 +66,6 @@
       font-size: 1rem;
       outline: none;
     }
-    .form-group input:focus, .form-group select:focus {
-      border-color: #78ffd6;
-    }
     .submit-btn {
       width: 100%;
       padding: 12px;
@@ -49,35 +76,28 @@
       font-size: 1.1rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
-    .submit-btn:hover {
-      opacity: 0.9;
-      transform: translateY(-2px);
-    }
-    .status-msg {
-      margin-top: 15px;
-      text-align: center;
-      font-weight: 700;
-    }
-    .nav-link {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #78ffd6;
-      text-decoration: none;
-    }
+    .status-msg { margin-top: 15px; text-align: center; font-weight: 700; }
+    .nav-link { display: block; text-align: center; margin-top: 20px; color: #78ffd6; text-decoration: none; }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>لوحة إضافة الجرابات</h1>
-    <p>أضف بيانات الجراب ليظهر فوراً في المعرض</p>
+    <h1>لوحة التحكم والإدارة</h1>
+    <p>التحكم في حالة الموقع وإضافة الجرابات</p>
   </header>
 
   <main class="admin-container">
+    <!-- قسم التحكم في وضع الصيانة -->
+    <div class="toggle-section">
+      <span>حالة وضع الصيانة:</span>
+      <button id="toggle-maintenance-btn" class="switch-btn inactive" onclick="toggleMaintenance()">جاري الفحص...</button>
+    </div>
+
+    <!-- نموذج إضافة الجرابات -->
     <form id="add-cover-form">
+      <h3 style="margin-bottom: 15px; text-align: right; color: #78ffd6;">إضافة جراب جديد</h3>
       <div class="form-group">
         <label>عنوان/وصف الجراب:</label>
         <input type="text" id="title" placeholder="مثال: جراب سيليكون أسود" required>
@@ -86,7 +106,7 @@
       <div class="form-group">
         <label>الماركة:</label>
         <select id="brand" required>
-          <option value="iPhone">آيفون (iPhone)</option>
+          <option value="Oppo">أوبو (Oppo)</option>
           <option value="Samsung">سامسونج (Samsung)</option>
           <option value="Xiaomi">شاومي (Xiaomi)</option>
           <option value="Other">ماركة أخرى</option>
@@ -95,7 +115,7 @@
 
       <div class="form-group">
         <label>الموديل:</label>
-        <input type="text" id="modelName" placeholder="مثال: iPhone 14 Pro" required>
+        <input type="text" id="modelName" placeholder="مثال: Oppo Reno 8 Pro" required>
       </div>
 
       <button type="submit" class="submit-btn">إضافة الجراب الآن</button>
@@ -107,6 +127,48 @@
 
   <script>
     const API_URL = "https://covers-store-server.vercel.app/api/covers";
+    const SETTINGS_URL = "https://covers-store-server.vercel.app/api/settings";
+    let isMaintenance = false;
+
+    // جلب حالة وضع الصيانة الحالية
+    async function fetchSettings() {
+      try {
+        const res = await fetch(SETTINGS_URL);
+        const settings = await res.json();
+        isMaintenance = settings.isMaintenance;
+        updateToggleButton();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function updateToggleButton() {
+      const btn = document.getElementById("toggle-maintenance-btn");
+      if (isMaintenance) {
+        btn.innerText = "إغلاق وضع الصيانة (فتح الموقع)";
+        btn.className = "switch-btn active";
+      } else {
+        btn.innerText = "تفعيل وضع الصيانة (قفل الموقع)";
+        btn.className = "switch-btn inactive";
+      }
+    }
+
+    // تبديل وضع الصيانة
+    async function toggleMaintenance() {
+      try {
+        const res = await fetch(SETTINGS_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ isMaintenance: !isMaintenance })
+        });
+        const settings = await res.json();
+        isMaintenance = settings.isMaintenance;
+        updateToggleButton();
+        alert(isMaintenance ? "تم قفل الموقع وتفعيل وضع الصيانة!" : "تم فتح الموقع للزوار بنجاح!");
+      } catch (err) {
+        alert("حدث خطأ أثناء تغيير الحالة.");
+      }
+    }
 
     document.getElementById("add-cover-form").addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -123,9 +185,7 @@
       try {
         const response = await fetch(API_URL, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(coverData)
         });
 
@@ -138,11 +198,12 @@
           statusMsg.innerText = "حدث خطأ أثناء الإضافة.";
         }
       } catch (error) {
-        console.error("Error:", error);
         statusMsg.style.color = "#f87171";
-        statusMsg.innerText = "تعذر الاتصال بالسيرفر. تحقق من الإنترنت.";
+        statusMsg.innerText = "تعذر الاتصال بالسيرفر.";
       }
     });
+
+    fetchSettings();
   </script>
 </body>
 </html>

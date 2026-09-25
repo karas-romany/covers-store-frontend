@@ -13,9 +13,15 @@
     <p>استعراض أفضل الأغطية والجرابات المميزة لهاتفك</p>
   </header>
 
+  <!-- شريط البحث الجديد -->
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="ابحث عن جراب أو موديل معين..." oninput="handleSearch()">
+  </div>
+
+  <!-- أزرار التصفية المعدلة (أوبو بدل آيفون) -->
   <div class="filters">
     <button class="filter-btn active" onclick="filterByBrand('all')">الكل</button>
-    <button class="filter-btn" onclick="filterByBrand('iPhone')">آيفون</button>
+    <button class="filter-btn" onclick="filterByBrand('Oppo')">أوبو</button>
     <button class="filter-btn" onclick="filterByBrand('Samsung')">سامسونج</button>
     <button class="filter-btn" onclick="filterByBrand('Xiaomi')">شاومي</button>
   </div>
